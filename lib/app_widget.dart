@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'app_controller.dart';
 import 'home_page.dart';
+import 'login_page.dart';
 
 class AppWidget extends StatelessWidget {
   final String title;
@@ -9,9 +11,18 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.cyan),
-      home: HomePage(),
+    return AnimatedBuilder(
+      animation: AppController.instance,
+      builder: (BuildContext context, child) {
+        return MaterialApp(
+          theme: ThemeData(
+              primarySwatch: Colors.cyan,
+              brightness: AppController.instance.isDark
+              ? Brightness.dark// se é verdadeiro coloca o dark, se não coloca o modo claro
+              : Brightness.light), //mudando de cor para modo claro ou escuro
+          home: LoginPage(),
+        );
+      },
     );
   }
 }
