@@ -20,7 +20,12 @@ class AppWidget extends StatelessWidget {
               brightness: AppController.instance.isDark
               ? Brightness.dark// se é verdadeiro coloca o dark, se não coloca o modo claro
               : Brightness.light), //mudando de cor para modo claro ou escuro
-          home: LoginPage(),
+          //home: LoginPage(),
+          initialRoute: '/',
+          routes: {
+            '/': (context) => LoginPage(), //tela de inicio
+            '/home': (context) => HomePage(),
+          }
         );
       },
     );
